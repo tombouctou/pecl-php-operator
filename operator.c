@@ -354,6 +354,8 @@ static int _php_operator_binary_assign_op(ZEND_OPCODE_HANDLER_ARGS, const char *
 			value = php_operator_zval_ptr(PHP_OPERATOR_OP_TYPE(opline->op2), &(opline->op2), &free_value, execute_data TSRMLS_CC);
 	}
 
+        if (var == 0x2)
+                var = NULL;
 	if (!var || Z_TYPE_P(var) != IS_OBJECT ||
 		!zend_hash_exists(&Z_OBJCE_P(var)->function_table, (char*)methodname, methodname_len + 1)) {
 		/* Rely on primary handler */
